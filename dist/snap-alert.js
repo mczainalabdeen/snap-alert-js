@@ -42,12 +42,12 @@
     };
 
     var positions = {
-        "top center" : "alert-top-center" ,
-        "bottom center" : "alert-bottom-center" ,
-        "top left" : "alert-top-left" ,
-        "top right" : "alert-top-right" ,
-        "bottom left" : "alert-bottom-left" ,
-        "bottom right" : "alert-bottom-right" ,
+        "top center" : "snapAlert-top-center" ,
+        "bottom center" : "snapAlert-bottom-center" ,
+        "top left" : "snapAlert-top-left" ,
+        "top right" : "snapAlert-top-right" ,
+        "bottom left" : "snapAlert-bottom-left" ,
+        "bottom right" : "snapAlert-bottom-right" ,
     };
 
     // Object to store user-set global options
@@ -76,10 +76,10 @@
             var notClosed = true;
             // Your existing alert creation logic...
             // Create container if it doesn't exist
-            var container = document.querySelector('.alert-container.' + positions[settings.position] + '.alert-animation-'+settings.animation);
+            var container = document.querySelector('.snapAlert-container.' + positions[settings.position] + '.snapAlert-animation-'+settings.animation);
             if (container == null) {
                 const alertDiv = document.createElement('div');
-                alertDiv.classList.add('alert-container' , positions[settings.position] , 'alert-animation-'+settings.animation);
+                alertDiv.classList.add('snapAlert-container' , positions[settings.position] , 'snapAlert-animation-'+settings.animation);
                 document.body.appendChild(alertDiv);
                 container = alertDiv;
             }
@@ -87,35 +87,35 @@
             const modal = document.createElement('div');
             
             settings.type != 'html' && (modal.innerHTML = `
-                <div class="${settings.rtl && 'alert-rtl'} alert-item alert-${settings.type} ${settings.clickToClose && 'alert-clickable'} ${settings.isDark && 'alert-dark'} ${ !settings.preogressBar ? "progress-hide" : '' }">
-                    <div class="alert-main">
-                        <div class="alert-icon">${ settings.customIcon ? settings.customIcon : '<i class="bx '+ (settings.icon ?? icons[settings.type])+'"></i>' }</div>
+                <div class="${settings.rtl && 'snapAlert-rtl'} snapAlert-item snapAlert-${settings.type} ${settings.clickToClose && 'snapAlert-clickable'} ${settings.isDark && 'snapAlert-dark'} ${ !settings.preogressBar ? "progress-hide" : '' }">
+                    <div class="snapAlert-main">
+                        <div class="snapAlert-icon">${ settings.customIcon ? settings.customIcon : '<i class="bx '+ (settings.icon ?? icons[settings.type])+'"></i>' }</div>
                         <div>
-                            <div class="alert-title">${settings.title}</div>
-                            <div class="alert-message">${settings.message}</div>
-                            <div class="alert-actions">
-                            ${ settings.enableConfirm ? '<button class="alert-action alert-action-confirm" snap-alert-confirm >'+ settings.confirmText+'</button>' : ''}
-                            ${ settings.enableCancel ?'<button class="alert-action alert-action-cancel" snap-alert-cancel >'+ settings.cancelText+'</button>' : ''}
+                            <div class="snapAlert-title">${settings.title}</div>
+                            <div class="snapAlert-message">${settings.message}</div>
+                            <div class="snapAlert-actions">
+                            ${ settings.enableConfirm ? '<button class="snapAlert-action snapAlert-action-confirm" snap-alert-confirm >'+ settings.confirmText+'</button>' : ''}
+                            ${ settings.enableCancel ?'<button class="snapAlert-action snapAlert-action-cancel" snap-alert-cancel >'+ settings.cancelText+'</button>' : ''}
                             </div>
                         </div>
-                        ${settings.preogressBar ? "<div style='--alert-progress-duration:"+settings.duration/1000+"s' class='alert-progress-bar'></div>" : '' }
-                        <button class="alert-close" snap-alert-close><i class='bx bx-x'></i></button>
+                        ${settings.preogressBar ? "<div style='--snapAlert-progress-duration:"+settings.duration/1000+"s' class='snapAlert-progress-bar'></div>" : '' }
+                        <button class="snapAlert-close" snap-alert-close><i class='bx bx-x'></i></button>
                     </div>
                     
                 </div>
             `);
 
             settings.type == 'html' && (modal.innerHTML = `
-                <div class="${settings.rtl && 'alert-rtl'} alert-html alert-item alert-${settings.type} ${settings.clickToClose && 'alert-clickable'}">
+                <div class="${settings.rtl && 'snapAlert-rtl'} snapAlert-html snapAlert-item snapAlert-${settings.type} ${settings.clickToClose && 'snapAlert-clickable'}">
                     ${settings.code}
                 </div>
             `);
     
-            const modalContent = modal.querySelector('.alert-item');
+            const modalContent = modal.querySelector('.snapAlert-item');
             container.appendChild(modal);
     
             setTimeout(() => {
-                modalContent.classList.add('alert-'+settings.animation+'-in');
+                modalContent.classList.add('snapAlert-'+settings.animation+'-in');
             }, 10);
     
             if (settings.autoClose == true) {
@@ -126,11 +126,11 @@
     
             // Close and remove alert
             function closeAndRemove() {
-                modalContent.classList.remove('alert-'+settings.animation+'-in');
-                modalContent.classList.add('alert-'+settings.animation+'-out');
+                modalContent.classList.remove('snapAlert-'+settings.animation+'-in');
+                modalContent.classList.add('snapAlert-'+settings.animation+'-out');
                 setTimeout(() => {
                     modal.remove();
-                    const container_item_length = (document.querySelectorAll('.alert-container.' + positions[settings.position] + '.alert-animation-'+settings.animation + ' > div')).length;
+                    const container_item_length = (document.querySelectorAll('.snapAlert-container.' + positions[settings.position] + '.snapAlert-animation-'+settings.animation + ' > div')).length;
                     if (container_item_length == 0) {
                         container.remove();
                     }
@@ -156,27 +156,27 @@
                 closeAndRemove();
             });
     
-            modal.querySelector('[snap-alert-close] , .alert-clickable')?.addEventListener('click', () => {
+            modal.querySelector('[snap-alert-close] , .snapAlert-clickable')?.addEventListener('click', () => {
                 closeAndRemove();
             });
     
         };
     
         function clearAll() {
-            const allAlerts = document.querySelectorAll('.alert-container > div');
+            const allAlerts = document.querySelectorAll('.snapAlert-container > div');
             
             allAlerts.forEach((alert , key) => {
                 console.log("Key : "+key*2);
                 setTimeout(() => {
-                    alert.classList.remove('alert-'+settings.animation+'-in');
-                    alert.classList.add('alert-'+settings.animation+'-out');
+                    alert.classList.remove('snapAlert-'+settings.animation+'-in');
+                    alert.classList.add('snapAlert-'+settings.animation+'-out');
                 }, (key*20));
                 setTimeout(() => {
                     alert.remove();
                 }, 300+(key*20));
             });
         
-            const allContainers = document.querySelectorAll('.alert-container');
+            const allContainers = document.querySelectorAll('.snapAlert-container');
 
             allContainers.forEach((container , key) => {
                 setTimeout(() => {
