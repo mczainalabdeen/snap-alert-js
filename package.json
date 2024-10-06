@@ -1,6 +1,6 @@
 {
   "name": "snap-alert-js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SnapAlert is a lightweight Javascript plugin that provides customizable and user-friendly alert notifications , Easily display alerts, confirmations, and prompts in your applications with simple methods and flexible options.",
   "homepage": "https://zain.picker.sd",
   "scripts": {
@@ -10,7 +10,7 @@
   "author": "Zainalabdeen Radwan <zain@picker.sd> (https://picker.sd)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mczainalabdeen/snap-alert.git"
+    "url": "https://github.com/mczainalabdeen/snap-alert-js.git"
   },
  
   "license": "MIT"
