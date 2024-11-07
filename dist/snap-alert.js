@@ -89,13 +89,13 @@
             settings.type != 'html' && (modal.innerHTML = `
                 <div class="${settings.rtl && 'snapAlert-rtl'} snapAlert-item snapAlert-${settings.type} ${settings.clickToClose && 'snapAlert-clickable'} ${settings.isDark && 'snapAlert-dark'} ${ !settings.preogressBar ? "progress-hide" : '' }">
                     <div class="snapAlert-main">
-                        <div class="snapAlert-icon">${ settings.customIcon ? settings.customIcon : '<i class="bx '+ (settings.icon ?? icons[settings.type])+'"></i>' }</div>
+                        ${ (['info','success','warning','error']).includes(settings.type) ? ( '<div class="snapAlert-icon">' + (settings.customIcon ? settings.customIcon : '<i class="bx '+ (settings.icon ?? icons[settings.type])+'"></i>') + ' </div>' ) : '<div class="snapAlert-no-icon"></div>'}
                         <div>
-                            <div class="snapAlert-title">${settings.title}</div>
-                            <div class="snapAlert-message">${settings.message}</div>
+                            ${settings.title ? '<div class="snapAlert-title">'+settings.title+'</div>' : ''}
+                            ${settings.message ? '<div class="snapAlert-message">'+settings.message+'</div>' : ''}
                             <div class="snapAlert-actions">
-                            ${ settings.enableConfirm ? '<button class="snapAlert-action snapAlert-action-confirm" snap-alert-confirm >'+ settings.confirmText+'</button>' : ''}
-                            ${ settings.enableCancel ?'<button class="snapAlert-action snapAlert-action-cancel" snap-alert-cancel >'+ settings.cancelText+'</button>' : ''}
+                            ${ settings.enableConfirm ? '<button class="snapAlert-action snapAlert-action-confirm" snap-alert-confirm >'+ (settings.confirmText??'')+'</button>' : ''}
+                            ${ settings.enableCancel ?'<button class="snapAlert-action snapAlert-action-cancel" snap-alert-cancel >'+ (settings.cancelText??'')+'</button>' : ''}
                             </div>
                         </div>
                         ${settings.preogressBar ? "<div style='--snapAlert-progress-duration:"+settings.duration/1000+"s' class='snapAlert-progress-bar'></div>" : '' }

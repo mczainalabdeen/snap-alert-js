@@ -57,32 +57,32 @@ You can now use SnapAlert to display different types of alerts. Here are some ex
 #### Basic Alert
 
 ```javascript
-SnapAlert.alert('Alert Title', 'This is a basic alert.');
+SnapAlert().alert('Alert Title', 'This is a basic alert.');
 ```
 
 #### Success Alert
 
 ```javascript
-SnapAlert.success('Success', 'Your operation was successful!');
+SnapAlert().success('Success', 'Your operation was successful!');
 ```
 
 #### Info Alert
 
 ```javascript
-SnapAlert.info('Info', 'Be Notice!');
+SnapAlert().info('Info', 'Be Notice!');
 ```
 
 
 #### Error Alert
 
 ```javascript
-SnapAlert.error('Error', 'Something went wrong.');
+SnapAlert().error('Error', 'Something went wrong.');
 ```
 
 #### Confirmation Alert with Actions
 
 ```javascript
-SnapAlert.warning('Are you sure?', 'This action cannot be undone.', {
+SnapAlert().warning('Are you sure?', 'This action cannot be undone.', {
   enableConfirm: true,
   enableCancel: true,
   onConfirm: () => {
@@ -99,7 +99,7 @@ SnapAlert.warning('Are you sure?', 'This action cannot be undone.', {
 You can customize the options for each alert. For example:
 
 ```javascript
-SnapAlert.info('Information', 'This is an info alert.', {
+SnapAlert().info('Information', 'This is an info alert.', {
   position: 'top right',
   duration: 5000,
   icon: 'custom-icon-class', // Replace with a Boxicons class name (https://boxicons.com)
@@ -112,7 +112,7 @@ SnapAlert.info('Information', 'This is an info alert.', {
 You can display various types of alerts using the provided methods. Below is an example of how to show a custom HTML alert:
 
 ```javascript
-SnapAlert.html(`<img src="https://placehold.co/600x400" />`, {
+SnapAlert().html(`<img src="https://placehold.co/600x400" />`, {
         position: 'top right',
         duration: 5000,
     }
@@ -125,7 +125,7 @@ SnapAlert.html(`<img src="https://placehold.co/600x400" />`, {
 You can use the `SnapOptions` method to set global default options for all alerts. This is particularly useful if you want to maintain consistency across multiple alerts.
 
 ```javascript
-SnapAlert.SnapOptions({
+SnapAlert().SnapOptions({
   duration: 5000,
   isDark: true,
   position: 'bottom right'
@@ -138,14 +138,14 @@ After setting global options, all subsequent alerts will use the specified defau
 
 ```javascript
 // Set global options
-SnapAlert.SnapOptions({
+SnapAlert().SnapOptions({
   duration: 4000,
   isDark: false,
 });
 
 // Now all alerts will have these default settings
-SnapAlert.success('Global Success', 'This alert will use global options.');
-SnapAlert.error('Global Error', 'This alert will also use global options.');
+SnapAlert().success('Global Success', 'This alert will use global options.');
+SnapAlert().error('Global Error', 'This alert will also use global options.');
 ```
 
 
@@ -154,7 +154,7 @@ SnapAlert.error('Global Error', 'This alert will also use global options.');
 The `clearAll` method is used to remove all active alerts from the screen. This can be useful in scenarios where you want to clear multiple notifications at once, such as when navigating away from a page, or after performing a certain action where notifications are no longer relevant.
 
 ```javascript
-SnapAlert.clearAll();
+SnapAlert().clearAll();
 ```
 
 This will instantly clear all alerts, including success, error, warning, info, and custom HTML alerts, if any are currently visible.
